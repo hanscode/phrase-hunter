@@ -30,6 +30,13 @@ class Game():
     def get_guess(self):
         """Get a guess from the user."""
         guess = input("Guess a letter: ").lower()
+       
+        while len(guess) != 1 or not guess.isalpha():
+            print("Invalid input. Please make sure the following is true:")
+            print("1. You only input one character.")
+            print("2. You only input letters (a-z).")
+            print("3. You do not input a space. \n")
+            guess = input("Guess a letter: ").lower()
         return guess
     
     def game_over(self):
