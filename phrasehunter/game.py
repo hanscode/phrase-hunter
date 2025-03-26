@@ -29,7 +29,14 @@ class Game():
         
     def get_guess(self):
         """Get a guess from the user."""
-        guess = input("Guess a letter: ").lower()
+        
+        try:
+            guess = input("Guess a letter: ").lower()
+        # if the user presses Ctrl+C, exit the game gracefully
+        except KeyboardInterrupt:
+            print("\nGame interrupted. Goodbye!")
+            return None
+
         try:
             if guess == "":
                 raise ValueError("Empty input is not allowed.")
@@ -78,6 +85,11 @@ class Game():
             self.active_phrase.display(self.guesses)
 
             user_guess = self.get_guess()
+
+            if user_guess is None:
+                print("Thanks for playing. Exiting the game.")
+                return
+
             self.guesses.append(user_guess)
 
             if not self.active_phrase.check_guess(user_guess):
