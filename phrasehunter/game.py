@@ -6,11 +6,11 @@ class Game():
     def __init__(self):
         self.missed = 0
         self.phrases = [
-            "Hello World",
-            "Simple is Better",
-            "Python is Fun",
-            "Code is Poetry",
-            "Keep it Simple"
+            Phrase("Hello World"),
+            Phrase("Simple is Better"),
+            Phrase("Python is Fun"),
+            Phrase("Code is Poetry"),
+            Phrase("Keep it Simple")
         ]
         self.active_phrase = None
         self.guesses = [" "]
@@ -74,7 +74,7 @@ class Game():
     def start(self):
         """Start the game."""
 
-        self.active_phrase = Phrase(self.get_random_phrase())
+        self.active_phrase = self.get_random_phrase()
 
         self.welcome()
         # Loop until the user has guessed the phrase or has missed 5 times.
