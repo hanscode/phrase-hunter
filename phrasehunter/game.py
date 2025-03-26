@@ -30,13 +30,18 @@ class Game():
     def get_guess(self):
         """Get a guess from the user."""
         guess = input("Guess a letter: ").lower()
-       
-        while len(guess) != 1 or not guess.isalpha():
-            print("Invalid input. Please make sure the following is true:")
-            print("1. You only input one character.")
-            print("2. You only input letters (a-z).")
-            print("3. You do not input a space. \n")
-            guess = input("Guess a letter: ").lower()
+        try:
+            if guess == "":
+                raise ValueError("Empty input is not allowed.")
+            elif len(guess) != 1:
+                raise ValueError("Please enter a single character.")
+            elif not guess.isalpha():
+                raise ValueError("Please enter only letters.")
+            elif guess in self.guesses:
+                raise ValueError("You have already guessed that letter.")
+        except ValueError as e:
+            print(e) 
+            return self.get_guess() 
         return guess
     
     def game_over(self):
