@@ -47,9 +47,22 @@ class Game():
     def game_over(self):
         """Display a game over message."""
         if self.missed == 5:
-            print("Game Over! Better luck next time.")
+            print("Game Over! Better luck next time.\n")
         else:
-            print("Congratulations! You've guessed the phrase!")
+            print("Congratulations! You've guessed the phrase!\n")
+
+        # prompt the user to play again
+        self.play_again()
+    
+    def play_again(self):
+        """Ask the user if they want to play again."""
+        play_again = input("Do you want to play again? (y/n): ").lower()
+        if play_again == 'y':
+            self.missed = 0
+            self.guesses = [" "]
+            self.start()
+        else:
+            print("Thank you for playing!")
 
     def start(self):
         """Start the game."""
